@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2025 台灣當代人物論壇｜活動回饋問卷</title>
+<meta property="og:title" content="2025 台灣當代人物論壇｜活動回饋問卷" />
+<meta property="og:description" content="深耕臺南，健康臺灣 - 課後滿意度與學習成效調查" />
+
+<!-- 使用 Noto Sans TC 字體 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root { 
+    /* 提取自海報 (image_02d305.jpg) 的配色系統 
+       風格：明亮、科技、健康、清新
+    */
+    --bg-gradient-start: #b8cbf9; /* 海報左側的淡藍色 */
+    --bg-gradient-mid: #ffffff;   /* 中間過渡白 */
+    --bg-gradient-end: #e3f65f;   /* 海報右側的亮萊姆綠 */
+    
+    --primary-accent: #d4ea33;    /* 萊姆綠 (按鈕/強調/滿意度選取色) */
+    --primary-hover: #c2d822;     /* 按鈕深色狀態 */
+    
+    --text-main: #1a1a1a;         /* 深黑 */
+    --text-sub: #555555;          /* 次要文字灰 */
+    --text-on-primary: #000000;   /* 萊姆綠背景上的文字顏色 */
+
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --card-border: rgba(255, 255, 255, 0.8);
+    --card-shadow: 0 10px 30px rgba(58, 80, 120, 0.15);
+    
+    --input-bg: #f8f9fa;
+    --input-border: #cbd5e1;
+    --input-focus: #a5b4fc;
+    
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+}
+
+body { 
+    margin: 0; 
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-main); 
+    background: linear-gradient(120deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+    background-attachment: fixed;
+    min-height: 100vh; 
+    line-height: 1.6; 
+    padding-bottom: 40px;
+}
+
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+/* --- Header / Poster Area --- */
+.header-section { margin-bottom: 30px; text-align: center; }
+.poster-container {
+    width: 100%; max-width: 100%; margin: 0 auto 24px;
+    border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); background: #fff;
+    position: relative;
+}
+.poster-placeholder {
+    aspect-ratio: 21 / 9;
+    background: linear-gradient(90deg, #aec2f7, #ffffff, #e6f772);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+}
+.poster-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+.poster-overlay-text {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); text-align: center; width: 90%;
+}
+.poster-title-big {
+    font-size: clamp(24px, 5vw, 42px); font-weight: 900; color: #000;
+    letter-spacing: 2px; text-shadow: 0 2px 0 rgba(255,255,255,0.8); margin: 0;
+}
+.poster-subtitle {
+    font-size: clamp(14px, 3vw, 20px); color: #333; font-weight: 700;
+    background: rgba(255,255,255,0.7); padding: 4px 12px;
+    border-radius: 4px; display: inline-block; margin-top: 8px;
+}
+
+/* --- Card Styles --- */
+.card { 
+    background: var(--card-bg); border-radius: var(--radius-lg); 
+    padding: 32px; margin-bottom: 24px; box-shadow: var(--card-shadow); 
+    border: 1px solid var(--card-border); backdrop-filter: blur(10px); 
+    position: relative; overflow: hidden;
+}
+.card::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--primary-accent), var(--bg-gradient-start));
+}
+
+.section-title { 
+    font-weight: 800; font-size: 22px; margin: 0 0 20px 0; 
+    color: var(--text-main); display: flex; align-items: center; gap: 10px;
+}
+.section-badge {
+    background: var(--primary-accent); color: var(--text-on-primary);
+    font-size: 14px; padding: 2px 10px; border-radius: 12px; font-weight: 700;
+}
+.note {
+    font-size: 14px; color: var(--text-sub); background: rgba(0,0,0,0.03);
+    padding: 12px; border-radius: 8px; margin-bottom: 20px;
+    border-left: 3px solid var(--bg-gradient-start);
+}
+
+/* --- Form Elements --- */
+label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
+
+input[type="text"], textarea {
+    width: 100%; border: 2px solid var(--input-bg); border-radius: var(--radius-sm);
+    padding: 14px; font-size: 16px; background: var(--input-bg);
+    color: #333; box-sizing: border-box; transition: all 0.3s;
+}
+input[type="text"]:focus, textarea:focus {
+    background: #fff; border-color: var(--input-focus);
+    outline: none; box-shadow: 0 0 0 4px rgba(184, 203, 249, 0.2);
+}
+
+/* Custom Checkbox & Radio (Part 1) */
+.options-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;
+}
+.option-label {
+    display: flex; align-items: center; padding: 12px 16px;
+    background: #fff; border: 1px solid var(--input-border);
+    border-radius: var(--radius-md); cursor: pointer;
+    transition: all 0.2s; user-select: none;
+}
+.option-label:hover { border-color: var(--bg-gradient-start); background: #f0f7ff; }
+.option-label input { margin-right: 12px; accent-color: var(--text-main); transform: scale(1.2); }
+.option-label.checked { background: #eefadf; border-color: #b8d630; font-weight: 600; }
+
+/* --- Likert Scale Styling (Shared) --- */
+.likert-group {
+    margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #eee;
+}
+.likert-group:last-child { border-bottom: none; }
+.likert-question { font-size: 16px; font-weight: 500; margin-bottom: 12px; color: #222; }
+.likert-scale { display: flex; justify-content: space-between; gap: 8px; }
+.likert-opt { flex: 1; text-align: center; position: relative; }
+.likert-opt input { position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer; z-index: 2; }
+
+/* Default Circle Style (for Part 2) */
+.likert-circle {
+    width: 100%; padding: 12px 0; background: #fff; border: 1px solid var(--input-border);
+    border-radius: 8px; font-weight: 600; color: #888; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.likert-opt input:checked + .likert-circle {
+    background: var(--primary-accent); color: var(--text-on-primary);
+    border-color: #c2d822; box-shadow: 0 4px 10px rgba(212, 234, 51, 0.4); transform: translateY(-2px);
+}
+.likert-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 12px; color: #888; padding: 0 4px; }
+
+/* --- Satisfaction Section Specific Styles (Part 3) --- */
+/* 滿意度專用：寬鬆的 Grid，避免擠在一起 */
+.satisfaction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 增加最小寬度，確保有呼吸空間 */
+    gap: 40px; /* 增加間距 */
+    align-items: start;
+}
+
+/* 滿意度專用：方塊按鈕風格 (參考圖片 image_032d7a.png) */
+.satisfaction-box-scale {
+    display: flex;
+    gap: 12px; /* 按鈕之間的間距 */
+    justify-content: flex-start;
+}
+/* 統一所有滿意度按鈕的大小 */
+.satisfaction-opt {
+    width: 52px; /* 固定寬度，確保所有格子依樣大 */
+    height: 52px;
+    position: relative;
+    flex: 0 0 auto;
+}
+.satisfaction-opt input {
+    position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer; z-index: 2;
+}
+.satisfaction-box {
+    width: 100%; height: 100%;
+    background: #fff;
+    border: 2px solid #e2e8f0; /* 淺灰邊框 */
+    border-radius: 10px; /* 圓角 */
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: #94a3b8; /* 預設灰色字 */
+    font-size: 18px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+/* 選中狀態：亮萊姆綠背景 + 黑色文字 + 輕微浮起 */
+.satisfaction-opt input:checked + .satisfaction-box {
+    background: var(--primary-accent);
+    border-color: var(--primary-accent);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 234, 51, 0.5);
+}
+.satisfaction-group {
+    /* 移除底線，讓排版更像卡片矩陣 */
+    border-bottom: none; margin-bottom: 0; padding-bottom: 0;
+}
+.satisfaction-question {
+    font-size: 16px; font-weight: 600; margin-bottom: 16px; color: #1a1a1a;
+    /* 模擬圖片中的標題樣式 */
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%; background: #000; color: #fff; font-size: 20px; font-weight: 700;
+    padding: 18px; border: none; border-radius: var(--radius-md); cursor: pointer;
+    transition: all 0.3s; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    position: relative; overflow: hidden;
+}
+.submit-btn::after {
+    content: ""; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+    background: var(--primary-accent); transition: width 0.3s ease; z-index: 0;
+}
+.submit-btn span { position: relative; z-index: 1; transition: color 0.3s; }
+.submit-btn:hover::after { width: 100%; }
+.submit-btn:hover span { color: #000; }
+
+/* Footer */
+footer { text-align: center; font-size: 13px; color: #666; margin-top: 40px; }
+
+/* Modal */
+.modal {
+    display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6); backdrop-filter: blur(4px); align-items: center; justify-content: center;
+}
+.modal-content {
+    background-color: #fff; padding: 30px; border-radius: 20px; width: 85%; max-width: 400px;
+    text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal h3 { margin-top: 0; color: var(--text-main); }
+.modal-btn {
+    background: var(--primary-accent); color: #000; border: none; padding: 10px 24px;
+    border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 16px;
+}
+@keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+@media (max-width: 600px) {
+    .likert-circle { padding: 8px 0; font-size: 16px; }
+    .card { padding: 24px 16px; }
+    .poster-title-big { font-size: 28px; }
+    /* 手機版讓滿意度選項不要太小 */
+    .satisfaction-opt { width: 42px; height: 42px; font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header with Poster Visual -->
+    <header class="header-section">
+        <div class="poster-container">
+            <div class="poster-placeholder">
+                <img src="image_02d305.jpg" alt="2025 台灣當代人物論壇" style="width:100%; display:block;" onerror="this.style.display='none'; document.querySelector('.poster-overlay-text').style.display='block'">
+                <div class="poster-overlay-text" style="display:none">
+                    <div class="poster-title-big">深耕臺南<br>健康臺灣</div>
+                    <div class="poster-subtitle">2025 台灣當代人物論壇</div>
+                </div>
+            </div>
+        </div>
+        <h1 style="margin:0; font-size: 24px;">活動後測與滿意度整合問卷</h1>
+        <p style="color: #555; margin-top: 8px;">感謝您的參與，請協助我們了解您的學習收穫。</p>
+    </header>
+
+    <form id="surveyForm">
+        
+        <!-- Part 1: Basic Info -->
+        <div class="card">
+            <div class="section-title"><span class="section-badge">01</span>基本資料</div>
+            <div style="margin-bottom: 24px;">
+                <label>1. 您的身分角色別</label>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="role" value="醫療人員"> 醫療人員</label>
+                    <label class="option-label"><input type="radio" name="role" value="醫療行政"> 醫療行政</label>
+                    <label class="option-label"><input type="radio" name="role" value="社衛人員"> 社會/公共衛生人員</label>
+                    <label class="option-label"><input type="radio" name="role" value="社區工作者"> 社區工作者</label>
+                    <label class="option-label"><input type="radio" name="role" value="其他"> 其他 (非相關人員)</label>
+                </div>
+            </div>
+            <div>
+                <label>2. 請問您今日參與了哪些場次？（可複選）</label>
+                <div class="note">我們將根據您的選擇，綜合評估您的學習成效。</div>
+                <div class="options-grid" style="grid-template-columns: 1fr;">
+                    <label class="option-label">
+                        <input type="checkbox" name="sessions" value="智慧醫療">
+                        <div><strong>Session 1：智慧醫療大未來</strong><div style="font-size:12px; color:#666;">(焦點：國家健康藍圖、AI醫療、學習型照護)</div></div>
+                    </label>
+                    <label class="option-label">
+                        <input type="checkbox" name="sessions" value="永續企盼">
+                        <div><strong>Session 2：永續企盼</strong><div style="font-size:12px; color:#666;">(焦點：企業文化、ESG、品牌永續)</div></div>
+                    </label>
+                    <label class="option-label">
+                        <input type="checkbox" name="sessions" value="地方創生">
+                        <div><strong>Session 3：地方創生</strong><div style="font-size:12px; color:#666;">(焦點：產業結合、跨世代照護、社區支持)</div></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 2: Learning Outcomes (使用一般的 Likert Scale) -->
+        <div class="card">
+            <div class="section-title"><span class="section-badge">02</span>學習成效與轉化</div>
+            <div class="note">針對您參與的場次，請評估您的學習感受 (1: 非常不同意 ~ 5: 非常同意)</div>
+
+            <div class="likert-group">
+                <div class="likert-question">3. 我能清楚掌握今日論壇所探討的核心議題（如：智慧醫療趨勢、永續品牌價值或地方創生精神）。</div>
+                <div class="likert-scale">
+                    <label class="likert-opt"><input type="radio" name="q3" value="1"><div class="likert-circle">1</div></label>
+                    <label class="likert-opt"><input type="radio" name="q3" value="2"><div class="likert-circle">2</div></label>
+                    <label class="likert-opt"><input type="radio" name="q3" value="3"><div class="likert-circle">3</div></label>
+                    <label class="likert-opt"><input type="radio" name="q3" value="4"><div class="likert-circle">4</div></label>
+                    <label class="likert-opt"><input type="radio" name="q3" value="5"><div class="likert-circle">5</div></label>
+                </div>
+                <div class="likert-labels"><span>不同意</span><span>同意</span></div>
+            </div>
+            <!-- Q4 -->
+            <div class="likert-group">
+                <div class="likert-question">4. 我了解講者所提到的策略或案例（如：AI應用、台南企業案例、社區照護模式）如何應對當前的挑戰。</div>
+                <div class="likert-scale">
+                    <label class="likert-opt"><input type="radio" name="q4" value="1"><div class="likert-circle">1</div></label>
+                    <label class="likert-opt"><input type="radio" name="q4" value="2"><div class="likert-circle">2</div></label>
+                    <label class="likert-opt"><input type="radio" name="q4" value="3"><div class="likert-circle">3</div></label>
+                    <label class="likert-opt"><input type="radio" name="q4" value="4"><div class="likert-circle">4</div></label>
+                    <label class="likert-opt"><input type="radio" name="q4" value="5"><div class="likert-circle">5</div></label>
+                </div>
+            </div>
+            <!-- Q5 -->
+            <div class="likert-group">
+                <div class="likert-question">5. 聽完演講後，我獲得了新的觀點，並願意重新思考我原本對該議題的既有認知。</div>
+                <div class="likert-scale">
+                    <label class="likert-opt"><input type="radio" name="q5" value="1"><div class="likert-circle">1</div></label>
+                    <label class="likert-opt"><input type="radio" name="q5" value="2"><div class="likert-circle">2</div></label>
+                    <label class="likert-opt"><input type="radio" name="q5" value="3"><div class="likert-circle">3</div></label>
+                    <label class="likert-opt"><input type="radio" name="q5" value="4"><div class="likert-circle">4</div></label>
+                    <label class="likert-opt"><input type="radio" name="q5" value="5"><div class="likert-circle">5</div></label>
+                </div>
+            </div>
+            <!-- Q6 -->
+            <div class="likert-group">
+                <div class="likert-question">6. 我能體會「文化與價值」（如：組織文化、在地文化、醫療人文）在推動未來發展中的重要性。</div>
+                <div class="likert-scale">
+                    <label class="likert-opt"><input type="radio" name="q6" value="1"><div class="likert-circle">1</div></label>
+                    <label class="likert-opt"><input type="radio" name="q6" value="2"><div class="likert-circle">2</div></label>
+                    <label class="likert-opt"><input type="radio" name="q6" value="3"><div class="likert-circle">3</div></label>
+                    <label class="likert-opt"><input type="radio" name="q6" value="4"><div class="likert-circle">4</div></label>
+                    <label class="likert-opt"><input type="radio" name="q6" value="5"><div class="likert-circle">5</div></label>
+                </div>
+            </div>
+            <!-- Q7 -->
+            <div class="likert-group">
+                <div class="likert-question">7. 我更有信心能辨識出未來在推動相關業務（智慧化、永續化或在地化）時的關鍵成功因素。</div>
+                <div class="likert-scale">
+                    <label class="likert-opt"><input type="radio" name="q7" value="1"><div class="likert-circle">1</div></label>
+                    <label class="likert-opt"><input type="radio" name="q7" value="2"><div class="likert-circle">2</div></label>
+                    <label class="likert-opt"><input type="radio" name="q7" value="3"><div class="likert-circle">3</div></label>
+                    <label class="likert-opt"><input type="radio" name="q7" value="4"><div class="likert-circle">4</div></label>
+                    <label class="likert-opt"><input type="radio" name="q7" value="5"><div class="likert-circle">5</div></label>
+                </div>
+            </div>
+            <!-- Q8 -->
+            <div class="likert-group">
+                <div class="likert-question">8. 今天的內容啟發了我，讓我思考如何將這些概念應用於我的工作或生活中。</div>
+                <div class="likert-scale">
+                    <label class="likert-opt"><input type="radio" name="q8" value="1"><div class="likert-circle">1</div></label>
+                    <label class="likert-opt"><input type="radio" name="q8" value="2"><div class="likert-circle">2</div></label>
+                    <label class="likert-opt"><input type="radio" name="q8" value="3"><div class="likert-circle">3</div></label>
+                    <label class="likert-opt"><input type="radio" name="q8" value="4"><div class="likert-circle">4</div></label>
+                    <label class="likert-opt"><input type="radio" name="q8" value="5"><div class="likert-circle">5</div></label>
+                </div>
+            </div>
+            <!-- Q9 -->
+            <div class="likert-group">
+                <div class="likert-question">9. 我願意在活動結束後，持續關注或參與相關議題的發展。</div>
+                <div class="likert-scale">
+                    <label class="likert-opt"><input type="radio" name="q9" value="1"><div class="likert-circle">1</div></label>
+                    <label class="likert-opt"><input type="radio" name="q9" value="2"><div class="likert-circle">2</div></label>
+                    <label class="likert-opt"><input type="radio" name="q9" value="3"><div class="likert-circle">3</div></label>
+                    <label class="likert-opt"><input type="radio" name="q9" value="4"><div class="likert-circle">4</div></label>
+                    <label class="likert-opt"><input type="radio" name="q9" value="5"><div class="likert-circle">5</div></label>
+                </div>
+            </div>
+             <!-- Q10 -->
+             <div class="likert-group">
+                <div class="likert-question">10. 整體而言，我認為本次論壇的內容對我的專業成長或個人視野有所提升。</div>
+                <div class="likert-scale">
+                    <label class="likert-opt"><input type="radio" name="q10" value="1"><div class="likert-circle">1</div></label>
+                    <label class="likert-opt"><input type="radio" name="q10" value="2"><div class="likert-circle">2</div></label>
+                    <label class="likert-opt"><input type="radio" name="q10" value="3"><div class="likert-circle">3</div></label>
+                    <label class="likert-opt"><input type="radio" name="q10" value="4"><div class="likert-circle">4</div></label>
+                    <label class="likert-opt"><input type="radio" name="q10" value="5"><div class="likert-circle">5</div></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 3: Satisfaction (使用更新後的方塊樣式與寬鬆排版) -->
+        <div class="card">
+            <div class="section-title"><span class="section-badge">03</span>活動滿意度</div>
+            <div class="note">針對您參與的場次，請評估您的學習感受 (1: 非常不同意 ~ 5: 非常同意)</div>
+            
+            <div class="satisfaction-grid">
+                <!-- Q11 -->
+                <div class="satisfaction-group">
+                    <div class="satisfaction-question">11. 內容深度 (專業且結構清晰)</div>
+                    <div class="satisfaction-box-scale">
+                        <label class="satisfaction-opt"><input type="radio" name="q11" value="1"><div class="satisfaction-box">1</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q11" value="2"><div class="satisfaction-box">2</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q11" value="3"><div class="satisfaction-box">3</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q11" value="4"><div class="satisfaction-box">4</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q11" value="5"><div class="satisfaction-box">5</div></label>
+                    </div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="satisfaction-group">
+                    <div class="satisfaction-question">12. 實務應用 (具啟發性與策略)</div>
+                    <div class="satisfaction-box-scale">
+                        <label class="satisfaction-opt"><input type="radio" name="q12" value="1"><div class="satisfaction-box">1</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q12" value="2"><div class="satisfaction-box">2</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q12" value="3"><div class="satisfaction-box">3</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q12" value="4"><div class="satisfaction-box">4</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q12" value="5"><div class="satisfaction-box">5</div></label>
+                    </div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="satisfaction-group">
+                    <div class="satisfaction-question">13. 流程安排 (動線與議程)</div>
+                    <div class="satisfaction-box-scale">
+                        <label class="satisfaction-opt"><input type="radio" name="q13" value="1"><div class="satisfaction-box">1</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q13" value="2"><div class="satisfaction-box">2</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q13" value="3"><div class="satisfaction-box">3</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q13" value="4"><div class="satisfaction-box">4</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q13" value="5"><div class="satisfaction-box">5</div></label>
+                    </div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="satisfaction-group">
+                    <div class="satisfaction-question">14. 場地設備 (視聽與舒適度)</div>
+                    <div class="satisfaction-box-scale">
+                        <label class="satisfaction-opt"><input type="radio" name="q14" value="1"><div class="satisfaction-box">1</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q14" value="2"><div class="satisfaction-box">2</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q14" value="3"><div class="satisfaction-box">3</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q14" value="4"><div class="satisfaction-box">4</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q14" value="5"><div class="satisfaction-box">5</div></label>
+                    </div>
+                </div>
+                
+                <!-- Q15: 整體滿意度 (現在使用相同的按鈕大小與樣式) -->
+                <div class="satisfaction-group" style="grid-column: 1 / -1;">
+                    <div class="satisfaction-question">15. 整體滿意度</div>
+                    <div class="satisfaction-box-scale">
+                        <label class="satisfaction-opt"><input type="radio" name="q15" value="1"><div class="satisfaction-box">1</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q15" value="2"><div class="satisfaction-box">2</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q15" value="3"><div class="satisfaction-box">3</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q15" value="4"><div class="satisfaction-box">4</div></label>
+                        <label class="satisfaction-opt"><input type="radio" name="q15" value="5"><div class="satisfaction-box">5</div></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 4: Feedback -->
+        <div class="card">
+            <div class="section-title"><span class="section-badge">04</span>心得與回饋</div>
+            <div style="margin-bottom: 24px;">
+                <label>16. (開放題) 藉由本次論壇，您覺得「最有價值的收穫」或「印象最深刻的一句話/觀點」是什麼？</label>
+                <textarea name="feedback_valuable" rows="4" placeholder="請輸入您的想法..."></textarea>
+            </div>
+            <div>
+                <label>17. (開放題) 若未來舉辦類似論壇，您希望延伸探討哪些議題？或有哪些建議需改進之處？</label>
+                <textarea name="feedback_suggest" rows="4" placeholder="請輸入您的建議..."></textarea>
+            </div>
+        </div>
+
+        <button type="button" class="submit-btn" onclick="submitForm()"><span>提交問卷</span></button>
+
+    </form>
+    <footer>© 2025 奇美醫院 2025台灣當代人物論壇</footer>
+</div>
+
+<!-- Modal -->
+<div id="resultModal" class="modal">
+    <div class="modal-content">
+        <h3 id="modalTitle">提交成功</h3>
+        <p id="modalMsg">感謝您的寶貴意見！</p>
+        <button class="modal-btn" onclick="closeModal()">關閉</button>
+    </div>
+</div>
+
+<script>
+// Radio/Checkbox active styling
+document.querySelectorAll('.option-label input').forEach(input => {
+    input.addEventListener('change', function() {
+        if(this.type === 'radio') {
+            document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                r.closest('.option-label').classList.remove('checked');
+            });
+            this.closest('.option-label').classList.add('checked');
+        } else {
+            if(this.checked) this.closest('.option-label').classList.add('checked');
+            else this.closest('.option-label').classList.remove('checked');
+        }
+    });
+});
+
+function showModal(title, msg) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalMsg').innerText = msg;
+    document.getElementById('resultModal').style.display = 'flex';
+}
+function closeModal() { document.getElementById('resultModal').style.display = 'none'; }
+
+function submitForm() {
+    const form = document.getElementById('surveyForm');
+    const formData = new FormData(form);
+    const data = {};
+    
+    const required = ['role', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15'];
+    let missing = false;
+    
+    const sessions = document.querySelectorAll('input[name="sessions"]:checked');
+    if (sessions.length === 0) { showModal('資料未填寫完整', '請至少選擇一個您參與的場次 (第2題)'); return; }
+
+    for (let field of required) {
+        if (!form.querySelector(`input[name="${field}"]:checked`)) { missing = true; break; }
+    }
+
+    if (missing) { showModal('資料未填寫完整', '請確認所有題目皆已填寫完成。'); return; }
+
+    formData.forEach((value, key) => {
+        if(!data[key]) data[key] = value;
+        else {
+            if(!Array.isArray(data[key])) data[key] = [data[key]];
+            data[key].push(value);
+        }
+    });
+    
+    console.log('Form Data:', data);
+    const btn = document.querySelector('.submit-btn');
+    btn.innerHTML = '<span>傳送中...</span>';
+    btn.disabled = true;
+
+    setTimeout(() => {
+        showModal('提交成功', '感謝您的寶貴意見，我們已收到您的回饋！');
+        btn.innerHTML = '<span>已提交</span>';
+    }, 1500);
+}
+</script>
+</body>
+</html>
