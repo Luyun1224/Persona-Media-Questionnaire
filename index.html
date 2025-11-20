@@ -549,13 +549,34 @@ function submitForm() {
     
     console.log('Form Data:', data);
     const btn = document.querySelector('.submit-btn');
+    const originalText = btn.innerHTML;
     btn.innerHTML = '<span>傳送中...</span>';
     btn.disabled = true;
 
-    setTimeout(() => {
+    // *** 設定 Google Apps Script 網址 ***
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYXjQT3J0-2sTO_zfhHFvpEzhOn46AvPMcF_5hh1Qnpq_2xUIyjVI6GvMWA8ZG83fu/exec"; 
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        // 使用 text/plain 避免 CORS 預檢請求問題，後端依舊可解析內容
+        'Content-Type': 'text/plain;charset=utf-8' 
+      }
+    })
+    .then(response => {
+        // 即使是 opaque response (no-cors) 或成功回應，都視為成功
         showModal('提交成功', '感謝您的寶貴意見，我們已收到您的回饋！');
         btn.innerHTML = '<span>已提交</span>';
-    }, 1500);
+        // 選擇性：重置表單
+        // form.reset();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showModal('提交失敗', '發生錯誤，請檢查網路或稍後再試。');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
 }
 </script>
 </body>
